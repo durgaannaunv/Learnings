@@ -13,7 +13,8 @@
     function addItem()
     {
         var listitem = document.createElement("li");
-        listitem.textContent = "Hello";
+        var input=document.getElementById("input");
+        listitem.textContent = input.value;
         todocontainer.append(listitem);
 
     }
