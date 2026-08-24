@@ -1,6 +1,21 @@
-<input>
-<button>Add</button>
+<input id="input">
+<button onclick="addItem()">Add</button>
 
-<ul>
+<ul id="todocontainer">
     <li>Hello <button>Delete</button></li>
 </ul>
+
+<script>
+
+    var todocontainer = document.getElementById("todocontainer");
+    
+
+    function addItem()
+    {
+        var listitem = document.createElement("li");
+        listitem.textContent = "Hello";
+        todocontainer.append(listitem);
+
+    }
+
+</script>
