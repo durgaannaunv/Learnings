@@ -14,7 +14,7 @@
     {
         var listitem = document.createElement("li");
         var input=document.getElementById("input");
-        listitem.textContent = input.value;
+        listitem.innerHTML = input.value+ "<button>Delete</button>";
         todocontainer.append(listitem);
 
     }
