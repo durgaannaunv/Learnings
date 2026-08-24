@@ -2,7 +2,7 @@
 <button onclick="addItem()">Add</button>
 
 <ul id="todocontainer">
-    <li>Hello <button>Delete</button></li>
+    <li>Hello <button onclick="deleteItem(event)">Delete</button></li>
 </ul>
 
 <script>
@@ -14,9 +14,14 @@
     {
         var listitem = document.createElement("li");
         var input=document.getElementById("input");
-        listitem.innerHTML = input.value+ "<button>Delete</button>";
+        listitem.innerHTML = input.value+ "<button onClick='deleteItem()'>Delete</button>";
         todocontainer.append(listitem);
 
+    }
+
+    function deleteItem()
+    {
+        event.target.parentElement.remove();
     }
 
 </script>
