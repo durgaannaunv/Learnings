@@ -58,13 +58,19 @@
         var studentInputData = document.getElementById("studentData");
         var studentData =studentInputData.value;
 
+        try{
         var studentobj=JSON.parse(studentData)
-       
         Students.push(studentobj);
-       
         renderStudentDetails(Students);
-
         studentInputData.value="";
+        }
+        catch(error)
+        {
+            alert("Please verify the json provided")
+
+        }
+
+        
 
 
         
