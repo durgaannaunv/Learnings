@@ -82,8 +82,14 @@
        // var studentRow = document.createElement("tr");
        // studentRow.innerHTML = "<tr> <td>${studentName}</td> <td>${studentAge}</td> <td>${studentCourse}</td> <td>${studentGender}</td> <td>${studentEmail}</td><td><button>Delete</button></td></tr>";
 
-         tablebody.innerHTML +=`<tr> <td>${studentName}</td> <td>${studentAge}</td> <td>${studentCourse}</td> <td>${studentGender}</td> <td>${studentEmail}</td><td><button>Delete</button></td></tr>`;
+         tablebody.innerHTML +=`<tr> <td>${studentName}</td> <td>${studentAge}</td> <td>${studentCourse}</td> <td>${studentGender}</td> <td>${studentEmail}</td><td><button onclick="deleteSelectedRow(event)">Delete</button></td></tr>`;
         
+    }
+
+    function deleteSelectedRow(event)
+    {
+        console.log(event.target);
+        event.target.closest("tr").remove();
     }
 
 </script>
