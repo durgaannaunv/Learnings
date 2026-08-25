@@ -1,0 +1,55 @@
+<center>
+    <h1>Student Details</h1>
+</center>
+
+<div class="studentContainer">
+    <h2>Student Roaster</h2>
+    <div id="studentDetails">
+
+    </div>
+
+</div>
+
+<script>
+    var Students = [{
+        "RollNo" : 0001,
+        "StudentName" : "Durga",
+        "Course" : "Biology",
+        "Marks" : 1119
+    },
+    {
+        "RollNo" : 0002,
+        "StudentName" : "Raji",
+        "Course" : "Biology",
+        "Marks" : 1120
+    }
+    ]
+
+    function renderStudentDetails(studentarraydata)
+    {
+        var studentDetails=document.getElementById("studentDetails");
+        for(var i=0;i<studentarraydata.length;i++)
+    {
+        var student = studentarraydata[i];
+
+        studentDetails.innerHTML += `<div id="studentContainer">
+            <b>${student.StudentName}</b>
+             <div id="details"><b>RollNo : </b> ${student.RollNo}</div>
+             <div id="details">
+                <b>Course : </b> ${student.Course} | <b>Marks : </b> ${student.Marks}
+                </div>
+                <br>
+        </div>`;
+
+
+        
+
+    }
+        
+
+    }
+
+    window.onload = function() {
+        renderStudentDetails(Students);
+    };
+</script>

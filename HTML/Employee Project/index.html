@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Employee JSON App</title>
+    <style>
+        body { font-family: sans-serif; margin: 30px; background-color: #f9f9f9; }
+        .box { background: white; padding: 20px; margin-bottom: 20px; border: 1px solid #ddd; }
+        .employee-item { background: #eef; padding: 10px; margin: 10px 0; border-left: 5px solid blue; }
+        .details { font-size: 14px; color: #555; margin: 3px 0; }
+    </style>
+</head>
+<body>
+
+    <h2>🏢 Employee JSON Roster</h2>
+
+    <!-- STEP 1: THE INPUT FORM -->
+    <div class="box">
+        <h3>Add Employee JSON Data</h3>
+        <input type="text" id="nameInput" placeholder="Full Name"><br><br>
+        <input type="text" id="roleInput" placeholder="Job Title"><br><br>
+        <input type="text" id="deptInput" placeholder="Department"><br><br>
+        <input type="email" id="emailInput" placeholder="Email Address"><br><br>
+        <input type="text" id="skillsInput" placeholder="Skills (comma separated)"><br><br>
+        <button onclick="addEmployee()">Save to JSON Array</button>
+    </div>
+
+    <!-- STEP 2: THE SEARCH BAR -->
+    <div class="box">
+        <h3>Search</h3>
+        <input type="text" id="searchBar" oninput="searchEmployees()" placeholder="Type a name or department...">
+    </div>
+
+    <!-- STEP 3: THE DISPLAY LIST -->
+    <div class="box">
+        <h3>Employee Roster</h3>
+        <div id="employeeList"><!-- JSON data will map to here --></div>
+    </div>
+
+<script>
+    // 1. STATIC EMPLOYEE JSON DATA ARRAY
+    let employees = [
+        {
+            "id": 1,
+            "name": "Arjun Sharma",
+            "role": "Software Engineer",
+            "department": "Engineering",
+            "email": "arjun.sharma@company.com",
+            "skills": ["JavaScript", "React", "Node.js"]
+        },
+        {
+            "id": 2,
+            "name": "Priya Patel",
+            "role": "UI/UX Designer",
+            "department": "Design",
+            "email": "priya.patel@company.com",
+            "skills": ["Figma", "CSS"]
+        }
+    ];
+
+    // 2. FUNCTION TO RENDER THE JSON DATA ON SCREEN
+    function renderList(arrayToDisplay) {
+        const listDiv = document.getElementById('employeeList');
+        listDiv.innerHTML = ''; // Clear old items
+
+        arrayToDisplay.forEach(emp => {
+            // Join the skills array back into a friendly text string
+            const skillsText = emp.skills.join(', ');
+
+            listDiv.innerHTML += `
+                <div class="employee-item">
+                    <b>${emp.name}</b> (ID: ${emp.id})
+                    <div class="details">💼 <b>Role:</b> ${emp.role} | 🎯 <b>Dept:</b> ${emp.department}</div>
+                    <div class="details">✉️ <b>Email:</b> ${emp.email}</div>
+                    <div class="details">🛠️ <b>Skills:</b> ${skillsText}</div>
+                </div>
+            `;
+        });
+    }
+
+    // 3. FUNCTION TO CREATE A NEW JSON OBJECT FROM THE FORM
+    function addEmployee() {
+        // Grab input text values
+        const nameVal = document.getElementById('nameInput').value;
+        const roleVal = document.getElementById('roleInput').value;
+        const deptVal = document.getElementById('deptInput').value;
+        const emailVal = document.getElementById('emailInput').value;
+        const skillsVal = document.getElementById('skillsInput').value;
+
+        // Turn comma separated string into a real array: "Java, Python" -> ["Java", "Python"]
+        const skillsArray = skillsVal ? skillsVal.split(',') : [];
+
+        // Construct a clean object matching the JSON structure
+        const newEmp = {
+            id: Date.now(), // Generates a unique ID number using the current timestamp
+            name: nameVal,
+            role: roleVal,
+            department: deptVal,
+            email: emailVal,
+            skills: skillsArray
+        };
+
+        // Push the new object into our array
+        employees.push(newEmp);
+
+        // Refresh the layout view
+        renderList(employees); 
+        
+        // Clear all entry boxes
+        document.getElementById('nameInput').value = '';
+        document.getElementById('roleInput').value = '';
+        document.getElementById('deptInput').value = '';
+        document.getElementById('emailInput').value = '';
+        document.getElementById('skillsInput').value = '';
+    }
+
+    // 4. FUNCTION TO FILTER THE JSON DATA BY SEARCH
+    function searchEmployees() {
+        const searchText = document.getElementById('searchBar').value.toLowerCase();
+        
+        // Filters items if the search string matches the name OR the department
+        const filtered = employees.filter(emp => 
+            emp.name.toLowerCase().includes(searchText) || 
+            emp.department.toLowerCase().includes(searchText)
+        );
+        
+        renderList(filtered); 
+    }
+
+    // Initialize list presentation when web page finishes loading
+    window.onload = function() {
+        renderList(employees);
+    };
+</script>
+
+</body>
+</html>
