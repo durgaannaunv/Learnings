@@ -1,15 +1,15 @@
 <div>
     <center>
         <h1>Students Form</h1>
-        <form>
+  
             <table border="1">
                 <tr>
                     <td>Name : </td>
-                    <td><input type="text"></td>
+                    <td><input type="text" id="studentName"></td>
                 </tr>
                 <tr>
                     <td>Age : </td>
-                    <td><input type="number"></td>
+                    <td><input type="number" id="studentAge"></td>
                 </tr>
                 <tr>
                     <td>Gender : </td>
@@ -20,7 +20,7 @@
                 <tr>
                     <td>Course : </td>
                     <td>
-                        <select>
+                        <select id="studentCourse">
                             <option>Java</option>
                             <option>Python</option>
                             <option>SQL</option>
@@ -29,16 +29,63 @@
                 </tr>
                 <tr>
                     <td>Email : </td>
-                    <td><input type="email"></td>
+                    <td><input type="email" id="studentEmail"></td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="text-align: center;">
-                        <input type="submit" value="save" style="width: 100%;background-color: aqua;">
+                    <td colspan="2">
+                        <button onclick="addStundetData(event)">save</button>
                     </td>
                 </tr>
+                
             </table>
-        </form>
+
     </center>
     
 
 </div>
+
+
+    <center>
+    <table id="submittedStudents" border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Course</th>
+                <th>Gender</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="studentData">
+
+        </tbody>
+    </table>
+        </center>
+
+
+<script>
+    console.log("Student details before");
+    function addStundetData(event)
+    {
+        
+        console.log("Student details");
+        var tablebody=document.getElementById("studentData");
+        var studentName = document.getElementById("studentName").value;
+        var studentAge = document.getElementById("studentAge").value;
+        var studentCourse = document.getElementById("studentCourse").value;
+        var studentEmail = document.getElementById("studentEmail").value;
+
+        
+
+       // var studentRow = document.createElement("tr");
+       // studentRow.innerHTML = "<tr> <td>${studentName}</td> <td>${studentAge}</td> <td>${studentCourse}</td> <td></td> <td>${studentEmail}</td><td><button>Delete</button></td></tr>";
+
+         tablebody.innerHTML +=`<tr> <td>${studentName}</td> <td>${studentAge}</td> <td>${studentCourse}</td> <td></td> <td>${studentEmail}</td><td><button>Delete</button></td></tr>`;
+        
+    }
+
+</script>
+
+
+
