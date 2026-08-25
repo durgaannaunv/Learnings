@@ -1,5 +1,7 @@
 <center>
     <h1>Student Details</h1>
+    <input type="text" id="studentData" placeholder="enter the student details in json" style="width: 300px;height: 100px;">
+    <button onclick="addStudentDetails()">Add Student</button>
 </center>
 
 <div class="studentContainer">
@@ -12,22 +14,23 @@
 
 <script>
     var Students = [{
-        "RollNo" : 0001,
+        "RollNo" : "0001",
         "StudentName" : "Durga",
         "Course" : "Biology",
-        "Marks" : 1119
+        "Marks" : "1119"
     },
     {
-        "RollNo" : 0002,
+        "RollNo" : "0002",
         "StudentName" : "Raji",
         "Course" : "Biology",
-        "Marks" : 1120
+        "Marks" : "1120"
     }
     ]
 
     function renderStudentDetails(studentarraydata)
     {
         var studentDetails=document.getElementById("studentDetails");
+        studentDetails.innerHTML="";    
         for(var i=0;i<studentarraydata.length;i++)
     {
         var student = studentarraydata[i];
@@ -47,6 +50,24 @@
     }
         
 
+    }
+
+    function addStudentDetails()
+    {
+        console.log("inside the function")
+        var studentInputData = document.getElementById("studentData");
+        var studentData =studentInputData.value;
+
+        var studentobj=JSON.parse(studentData)
+       
+        Students.push(studentobj);
+       
+        renderStudentDetails(Students);
+
+        studentInputData.value="";
+
+
+        
     }
 
     window.onload = function() {
