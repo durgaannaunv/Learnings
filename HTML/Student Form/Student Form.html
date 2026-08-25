@@ -13,8 +13,8 @@
                 </tr>
                 <tr>
                     <td>Gender : </td>
-                    <td><input type="radio" name="gendergroup" >Male
-                        <input type="radio" name="gendergroup">Female
+                    <td><input type="radio" name="gendergroup" value="Male">Male
+                        <input type="radio" name="gendergroup" value="Female">Female
                     </td>
                 </tr>
                 <tr>
@@ -33,11 +33,11 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <button onclick="addStundetData(event)">save</button>
+                        <button onclick="addStundetData(event)" style="background-color: aqua;width: 100%;">save</button>
                     </td>
                 </tr>
                 
-            </table>
+            </table>    
 
     </center>
     
@@ -75,13 +75,14 @@
         var studentAge = document.getElementById("studentAge").value;
         var studentCourse = document.getElementById("studentCourse").value;
         var studentEmail = document.getElementById("studentEmail").value;
+        var studentGender = document.querySelector('input[name="gendergroup"]:checked').value;
 
         
 
        // var studentRow = document.createElement("tr");
-       // studentRow.innerHTML = "<tr> <td>${studentName}</td> <td>${studentAge}</td> <td>${studentCourse}</td> <td></td> <td>${studentEmail}</td><td><button>Delete</button></td></tr>";
+       // studentRow.innerHTML = "<tr> <td>${studentName}</td> <td>${studentAge}</td> <td>${studentCourse}</td> <td>${studentGender}</td> <td>${studentEmail}</td><td><button>Delete</button></td></tr>";
 
-         tablebody.innerHTML +=`<tr> <td>${studentName}</td> <td>${studentAge}</td> <td>${studentCourse}</td> <td></td> <td>${studentEmail}</td><td><button>Delete</button></td></tr>`;
+         tablebody.innerHTML +=`<tr> <td>${studentName}</td> <td>${studentAge}</td> <td>${studentCourse}</td> <td>${studentGender}</td> <td>${studentEmail}</td><td><button>Delete</button></td></tr>`;
         
     }
 
